@@ -1,0 +1,25 @@
+.grid {
+  width: 100%;
+
+  display: grid;
+
+  gap: 2rem;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.home {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
+
+  justify-content: center;
+}
+
+/* =========================
+   CATALOGO
+========================= */
+
+.catalogo {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}

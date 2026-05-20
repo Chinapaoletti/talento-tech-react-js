@@ -1,0 +1,91 @@
+.header {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+
+  z-index: 999;
+
+  backdrop-filter: blur(14px);
+
+  background: rgba(5, 8, 22, 0.7);
+
+  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 1rem 2rem;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  font-size: 1.8rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  letter-spacing: 2px;
+
+  color: white;
+
+  transition: 0.3s ease;
+}
+
+.logo span {
+  color: #00ffff;
+}
+
+.logo:hover {
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+  display: flex;
+
+  gap: 1rem;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.link {
+  text-decoration: none;
+
+  color: #cbd5e1;
+
+  padding: 0.7rem 1.2rem;
+
+  border-radius: 12px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.link:hover {
+  background: rgba(0, 255, 255, 0.1);
+
+  color: white;
+
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+}

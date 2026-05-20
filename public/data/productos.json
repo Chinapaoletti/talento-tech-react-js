@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nombre": "TaskFlow CRM",
+    "precio": 85000,
+    "stock": 22,
+    "imagen": "/images/taskflowcrm.png",
+    "descripcion": "Sistema CRM para gestión de clientes y automatización de ventas.",
+    "destacado": true
+  },
+  {
+    "id": 2,
+    "nombre": "CodeSync Cloud",
+    "precio": 97500,
+    "stock": 12,
+    "imagen": "/images/codesynccloud.png",
+    "descripcion": "Plataforma colaborativa para equipos de desarrollo y despliegues en la nube.",
+    "destacado": true
+  },
+  {
+    "id": 3,
+    "nombre": "Neon Analytics",
+    "precio": 110000,
+    "stock": 7,
+    "imagen": "/images/neonanalytics.png",
+    "descripcion": "Dashboard avanzado con métricas en tiempo real y visualización de datos.",
+    "destacado": false
+  },
+  {
+    "id": 4,
+    "nombre": "CyberDesk ERP",
+    "precio": 135000,
+    "stock": 4,
+    "imagen": "/images/cyberdeskerp.png",
+    "descripcion": "ERP modular para administrar inventario, ventas y finanzas.",
+    "destacado": false
+  },
+  {
+    "id": 5,
+    "nombre": "PixelCommerce",
+    "precio": 92000,
+    "stock": 15,
+    "imagen": "/images/pixelcommerce.png",
+    "descripcion": "Ecommerce moderno optimizado para ventas digitales y productos tech.",
+    "destacado": false
+  },
+  {
+    "id": 6,
+    "nombre": "Code Quest Game",
+    "precio": 89000,
+    "stock": 10,
+    "imagen": "/images/codequest.png",
+    "descripcion": "El videojuego para desarrollar tu Talento Tech.",
+    "destacado": true
+  }
+]
