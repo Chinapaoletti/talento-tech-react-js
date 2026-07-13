@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase/config";
 import ItemList from "../ItemList/ItemList";
 import styles from "./ItemListContainer.module.css";
 
@@ -8,25 +10,25 @@ function ItemListContainer({ destacados, variant = "home" }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/data/productos.json", {
-      cache: "no-store",
+  const productosRef = collection(db, "productos");
+
+  getDocs(productosRef)
+    .then((res) => {
+
+      const productosFirebase = res.docs.map((doc) => ({
+        ...doc.data()
+      }));
+
+      setProductos(productosFirebase);
+      setCargando(false);
+
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Error de carga");
+    .catch((err) => {
+      setError(err.message);
+      setCargando(false);
+    });
 
-        return res.json();
-      })
-
-      .then((data) => {
-        setProductos(data);
-        setCargando(false);
-      })
-
-      .catch((err) => {
-        setError(err.message);
-        setCargando(false);
-      });
-  }, []);
+}, []);
 
   const productosVisibles = destacados
     ? productos.filter((prod) => prod.destacado)

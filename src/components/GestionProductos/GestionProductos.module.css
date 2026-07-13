@@ -1,0 +1,305 @@
+.container {
+
+  max-width:1400px;
+
+  margin:0 auto;
+
+  padding:4rem 2rem 6rem;
+
+}
+
+
+/* HEADER */
+
+.header {
+
+  text-align:center;
+
+  margin-bottom:3rem;
+
+}
+
+
+.header h1 {
+
+  color:white;
+
+  font-size:clamp(
+    2rem,
+    5vw,
+    3rem
+  );
+
+}
+
+
+.header p {
+
+  color:#94a3b8;
+
+}
+
+
+
+
+/* FORMULARIO */
+
+.formulario {
+
+  margin-bottom:5rem;
+
+}
+
+
+
+
+/* LISTADO */
+
+.listado h2 {
+
+  color:white;
+
+  font-size:2rem;
+
+  margin-bottom:2rem;
+
+}
+
+
+
+
+.estado {
+
+  color:#94a3b8;
+
+  text-align:center;
+
+}
+
+
+
+
+
+/* GRID */
+
+
+.grid {
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    auto-fit,
+    minmax(260px,1fr)
+  );
+
+  gap:2rem;
+
+}
+
+
+
+
+
+/* CARD */
+
+.card {
+
+
+  background:
+  rgba(15,23,42,.8);
+
+
+  border:
+  1px solid rgba(255,255,255,.1);
+
+
+
+  border-radius:20px;
+
+
+  padding:1.5rem;
+
+
+
+  transition:.3s ease;
+
+
+}
+
+
+
+.card:hover {
+
+  transform:translateY(-5px);
+
+
+  border-color:
+  rgba(0,255,255,.4);
+
+
+}
+
+
+
+
+
+
+.card img {
+
+
+  width:100%;
+
+
+  height:200px;
+
+
+  object-fit:contain;
+
+
+  border-radius:14px;
+
+
+  margin-bottom:1rem;
+
+
+}
+
+
+
+
+.info h3 {
+
+
+  color:white;
+
+
+  margin-bottom:1rem;
+
+
+}
+
+
+
+.info span {
+
+
+  color:#00ffff;
+
+
+  font-size:.9rem;
+
+
+}
+
+
+.info p {
+
+
+  color:#94a3b8;
+
+
+}
+
+
+
+
+
+/* BOTONES */
+
+
+.botones {
+
+  display:flex;
+
+  gap:1rem;
+
+  margin-top:1.5rem;
+
+}
+
+
+
+.botones button {
+
+
+  flex:1;
+
+
+  padding:.8rem;
+
+
+  border-radius:12px;
+
+
+  border:none;
+
+
+  cursor:pointer;
+
+
+  font-weight:700;
+
+
+}
+
+
+
+
+
+.editar {
+
+
+  background:
+  linear-gradient(
+    135deg,
+    #00ffff,
+    #007cf0
+  );
+
+
+  color:white;
+
+
+}
+
+
+
+.eliminar {
+
+
+  background:
+  rgba(239,68,68,.15);
+
+
+  border:
+  1px solid rgba(239,68,68,.4)
+  !important;
+
+
+  color:#f87171;
+
+
+}
+
+
+
+
+@media(max-width:768px){
+
+
+  .container{
+
+    padding:3rem 1rem;
+
+  }
+
+
+  .botones{
+
+    flex-direction:column;
+
+  }
+
+
+}

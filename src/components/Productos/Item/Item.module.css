@@ -100,10 +100,12 @@
 
 .itemStock {
   color: #94a3b8;
-
   font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
 
-  margin-bottom: 1.5rem;
+.itemStock:last-of-type {
+  margin-bottom: 1.2rem;
 }
 
 /* =========================
@@ -112,18 +114,17 @@
 
 .itemButtons {
   display: flex;
-
+  flex-direction: column;
   gap: 0.8rem;
-
   margin-top: auto;
+  width: 100%;
 }
 
 .itemLink,
 .itemButton {
-  flex: 1;
+  width: 100%;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -132,11 +133,9 @@
   border-radius: 12px;
 
   font-weight: 600;
-
   font-size: 0.95rem;
 
   transition: all 0.25s ease;
-
   cursor: pointer;
 }
 
@@ -171,6 +170,47 @@
 
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.25);
 }
+
+/* =========================
+   AGREGAR AL CARRITO
+========================= */
+
+.addButton {
+  width: 100%;
+
+  padding: 0.8rem 1rem;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(0, 255, 255, 0.35);
+
+  background: rgba(0, 255, 255, 0.08);
+
+  color: #00ffff;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.addButton:hover {
+  background: rgba(0, 255, 255, 0.18);
+  border-color: #00ffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
+}
+
+.addButton:active {
+  transform: scale(0.97);
+}
+
 
 /* =========================
    RESPONSIVE

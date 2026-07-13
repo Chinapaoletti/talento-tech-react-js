@@ -1,0 +1,22 @@
+.contador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.boton {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.cantidad {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}

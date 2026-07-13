@@ -1,38 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase/config";
+
 import styles from "./ItemDetalle.module.css";
 
 function ItemDetalle() {
   const { id } = useParams();
 
   const [favorito, setFavorito] = useState(false);
-
   const [producto, setProducto] = useState(null);
-
   const [cargando, setCargando] = useState(true);
-
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/data/productos.json")
+    const productosRef = collection(db, "productos");
+
+    getDocs(productosRef)
       .then((res) => {
-        if (!res.ok) throw new Error("Error cargando producto");
+        const productos = res.docs.map((doc) => ({
+          ...doc.data(),
+        }));
 
-        return res.json();
-      })
-
-      .then((data) => {
-        const productoEncontrado = data.find((prod) => prod.id === Number(id));
+        const productoEncontrado = productos.find(
+          (producto) => Number(producto.id) === Number(id),
+        );
 
         setProducto(productoEncontrado);
-
         setCargando(false);
       })
-
       .catch((err) => {
         setError(err.message);
-
         setCargando(false);
       });
   }, [id]);
@@ -53,9 +52,10 @@ function ItemDetalle() {
         />
 
         <div className={styles.info}>
-          <p className={styles.badge}>Producto Digital</p>
+          <p className={styles.badge}>{producto.categoria}</p>
 
           <h1 className={styles.nombre}>{producto.nombre}</h1>
+
           <button
             className={styles.favorito}
             onClick={() => setFavorito(!favorito)}
@@ -67,10 +67,7 @@ function ItemDetalle() {
 
           <p className={styles.stock}>Stock disponible: {producto.stock}</p>
 
-          <p className={styles.descripcion}>
-            Plataforma desarrollada para potenciar equipos tech y experiencias
-            digitales modernas.
-          </p>
+          <p className={styles.descripcion}>{producto.descripcion}</p>
 
           <button className={styles.boton}>Comprar ahora</button>
         </div>

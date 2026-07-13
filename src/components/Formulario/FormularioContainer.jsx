@@ -1,83 +1,147 @@
 import { useState } from "react";
+
 import FormularioProducto from "./FormularioProducto";
 
-export function FormularioContainer() {
-  const [datosForm, setDatosForm] = useState({
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+
+import { db } from "../../firebase/config";
+
+function FormularioContainer({
+  productoEditar,
+  limpiarEdicion,
+  actualizarProductos,
+}) {
+  const datosIniciales = {
+    id: "",
     nombre: "",
     precio: "",
     stock: "",
-  });
+    categoria: "",
+    descripcion: "",
+    destacado: false,
+  };
 
+  const [datosForm, setDatosForm] = useState(
+    productoEditar
+      ? {
+          id: productoEditar.id,
+
+          nombre: productoEditar.nombre,
+
+          precio: productoEditar.precio,
+
+          stock: productoEditar.stock,
+
+          categoria: productoEditar.categoria,
+
+          descripcion: productoEditar.descripcion,
+
+          destacado: productoEditar.destacado,
+        }
+      : datosIniciales,
+  );
   const [imagenFile, setImagenFile] = useState(null);
-  const [urlImagen, setUrlImagen] = useState("");
-
-  const manejarCambioImagen = (evento) => {
-    const archivo = evento.target.files[0];
-
-    if (archivo) {
-      setImagenFile(archivo);
-    }
-  };
-
-  const manejarEnvio = async (evento) => {
-    evento.preventDefault();
-
-    if (!imagenFile) {
-      alert("Por favor, selecciona una imagen para el producto.");
-      return;
-    }
-
-    try {
-      const apiKey = "fcd55f2701c90e1fcb505675d2abf2b9";
-
-      const formData = new FormData();
-      formData.append("image", imagenFile);
-
-      console.log("Subiendo imagen...");
-
-      const respuestaImgbb = await fetch(
-        `https://api.imgbb.com/1/upload?key=${apiKey}`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-
-      const datosImgbb = await respuestaImgbb.json();
-
-      if (!datosImgbb.success) {
-        throw new Error("Error al subir imagen");
-      }
-
-      setUrlImagen(datosImgbb.data.url);
-
-      const productoCompleto = {
-        ...datosForm,
-        urlImagen: datosImgbb.data.url,
-      };
-
-      console.log("Producto completo:", productoCompleto);
-    } catch (error) {
-      console.error(error);
-      alert("Hubo un error");
-    }
-  };
+  const [urlImagen, setUrlImagen] = useState(productoEditar?.imagen || "");
+  const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
 
   const manejarCambio = (evento) => {
     const { name, value } = evento.target;
+
     setDatosForm({
       ...datosForm,
+
       [name]: value,
     });
+  };
+
+  const manejarCambioImagen = (evento) => {
+    setImagenFile(evento.target.files[0]);
+  };
+
+  const manejarEnvio = async (e) => {
+    e.preventDefault();
+
+    try {
+      let imagenFinal = urlImagen;
+
+      if (imagenFile) {
+        const formData = new FormData();
+
+        formData.append("image", imagenFile);
+
+        const respuesta = await fetch(
+          `https://api.imgbb.com/1/upload?key=fcd55f2701c90e1fcb505675d2abf2b9`,
+
+          {
+            method: "POST",
+
+            body: formData,
+          },
+        );
+
+        const datos = await respuesta.json();
+
+        imagenFinal = datos.data.url;
+      }
+
+      const producto = {
+        ...datosForm,
+
+        id: Number(datosForm.id),
+
+        precio: Number(datosForm.precio),
+
+        stock: Number(datosForm.stock),
+
+        imagen: imagenFinal,
+      };
+
+      if (productoEditar) {
+        await updateDoc(
+          doc(db, "productos", productoEditar.firestoreId),
+
+          producto,
+        );
+
+        setMensaje("Producto actualizado correctamente ✅");
+      } else {
+        await addDoc(
+          collection(db, "productos"),
+
+          producto,
+        );
+
+        setMensaje("Producto creado correctamente ✅");
+      }
+
+      await actualizarProductos();
+
+      limpiarEdicion();
+    } catch (error) {
+      console.log(error);
+
+      setMensaje("Error guardando producto");
+    }
   };
 
   return (
     <FormularioProducto
       datosForm={datosForm}
+
       manejarCambio={manejarCambio}
+
       manejarEnvio={manejarEnvio}
+
       manejarCambioImagen={manejarCambioImagen}
+
       urlImagen={urlImagen}
+
+      mensaje={mensaje}
+
+      tipoMensaje={tipoMensaje}
+
+      editar={!!productoEditar}
     />
   );
 }

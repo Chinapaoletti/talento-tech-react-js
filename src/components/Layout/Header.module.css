@@ -1,20 +1,30 @@
+/* =========================
+   HEADER
+========================= */
+
 .header {
   position: sticky;
   top: 0;
 
   width: 100%;
 
-  z-index: 999;
+  z-index: 1000;
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(18px);
 
-  background: rgba(5, 8, 22, 0.7);
+  background: rgba(5, 8, 22, 0.82);
 
-  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.12);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
+/* =========================
+   CONTAINER
+========================= */
+
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
 
   margin: 0 auto;
 
@@ -22,9 +32,13 @@
 
   display: flex;
 
+  align-items: center;
+
   justify-content: space-between;
 
-  align-items: center;
+  gap: 2rem;
+
+  position: relative;
 }
 
 /* =========================
@@ -32,17 +46,19 @@
 ========================= */
 
 .logo {
-  font-size: 1.8rem;
-
-  font-weight: 700;
+  color: white;
 
   text-decoration: none;
 
-  letter-spacing: 2px;
+  font-size: 1.9rem;
 
-  color: white;
+  font-weight: 800;
 
-  transition: 0.3s ease;
+  letter-spacing: -1px;
+
+  white-space: nowrap;
+
+  transition: 0.3s;
 }
 
 .logo span {
@@ -50,7 +66,7 @@
 }
 
 .logo:hover {
-  text-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.8);
 }
 
 /* =========================
@@ -60,7 +76,31 @@
 .nav {
   display: flex;
 
-  gap: 1rem;
+  align-items: center;
+
+  justify-content: space-between;
+
+  flex: 1;
+
+  gap: 2rem;
+}
+
+.links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  flex-wrap: wrap;
+}
+
+.userSection {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.8rem;
 }
 
 /* =========================
@@ -68,24 +108,251 @@
 ========================= */
 
 .link {
-  text-decoration: none;
-
   color: #cbd5e1;
 
-  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+
+  padding: 0.75rem 1rem;
 
   border-radius: 12px;
 
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.25s ease;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  white-space: nowrap;
 }
 
 .link:hover {
-  background: rgba(0, 255, 255, 0.1);
+  background: rgba(0, 255, 255, 0.08);
 
   color: white;
 
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   BADGE CARRITO
+========================= */
+
+.badge {
+  background: #00ffff;
+
+  color: #05121d;
+
+  font-size: 0.75rem;
+
+  font-weight: bold;
+
+  border-radius: 999px;
+
+  min-width: 22px;
+
+  height: 22px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 0 6px;
+}
+
+/* =========================
+   USUARIO
+========================= */
+
+.userInfo {
+  color: #94a3b8;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  padding: 0.75rem 1rem;
+
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.loginButton,
+.registerButton,
+.logoutButton {
+  border: none;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  padding: 0.75rem 1.2rem;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.loginButton {
+  background: transparent;
+
+  color: #cbd5e1;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.loginButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+}
+
+.registerButton {
+  background: linear-gradient(135deg, #00ffff, #007cf0);
+
+  color: white;
+}
+
+.registerButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.25);
+}
+
+.logoutButton {
+  background: rgba(239, 68, 68, 0.15);
+
+  color: #f87171;
+
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.logoutButton:hover {
+  background: #dc2626;
+
+  color: white;
+}
+
+/* =========================
+   HAMBURGUESA
+========================= */
+
+.menuButton {
+  display: none;
+
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 2rem;
+
+  cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 950px) {
+  .menuButton {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+  }
+
+  .nav {
+    position: absolute;
+
+    top: calc(100% + 1px);
+
+    left: 0;
+
+    right: 0;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 1.5rem;
+
+    padding: 1.5rem;
+
+    background: rgba(5, 8, 22, 0.98);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+  }
+
+  .navOpen {
+    display: flex;
+
+    animation: aparecer 0.25s ease;
+  }
+
+  .links {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .userSection {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    padding-top: 1rem;
+  }
+
+  .link,
+  .loginButton,
+  .registerButton,
+  .logoutButton,
+  .userInfo {
+    width: 100%;
+
+    justify-content: center;
+
+    text-align: center;
+  }
+}
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
 }
